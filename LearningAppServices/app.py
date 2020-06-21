@@ -33,7 +33,6 @@ def main():
     #     return 'hello'
 
     app.run()
-    pass
 
 if __name__ == '__main__':
     main()
