@@ -18,7 +18,7 @@ MS_IN_HOUR = 60 * MS_IN_MIN
 MS_IN_DAY = 24 * MS_IN_HOUR
 
 def get_current_millis():
-    return int(round(datetime.timestamp() * 1000))
+    return int(round(time.time() * 1000))
 
 def to_millis(datetime):
     return int(round(datetime.timestamp() * 1000))
