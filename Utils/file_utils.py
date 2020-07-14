@@ -103,13 +103,49 @@ def exists(filename, current_folder=None):
     path = normalize_path(filename, current_folder)
     return os.path.exists(path)
 
-# def last_modification(folder_paths):
-#     result = None
+def last_modification(folder_paths):
+    result = None
 
-#     for root_folder_path in folder_paths:
-#         pass
+    for root_folder_path in folder_paths:
+        file_date = modification_date(root_folder_path)
+        if (result is None) or (result < file_date):
+            result = file_date
 
-#     return result
+        for root, subdirs, files in os.walk(root_folder_path):
+            root_path = pathlib.Path(root)
+            for file in files:
+                file_path = str(root_path.joinpath(file))
+                file_date = modification_date(file_path)
+                if (result is None) or (result < file_date):
+                    result = file_date
+            
+            for folder in subdirs:
+                folder_path = str(root_path.joinpath(folder))
+                folder_date = modification_date(folder_path)
+                if (result is None) or (result < folder_date):
+                    result = folder_date
+
+    return result
+
+def relative_path(path, parent_path):
+    path = normalize_path(path)
+    parent_path = normalize_path(parent_path)
+
+    if os_utils.is_win():
+        path = path.capitalize()
+        parent_path = parent_path.capitalize()
+
+    if not path.startswith(parent_path):
+        raise ValueError(path + 'is not subpath of' + parent_path)
+
+    relative_path = path[len(parent_path):]
+
+    if relative_path.startswith(os.path.sep):
+        return relative_path[1:]
+    
+    return relative_path
+
+
 
 if __name__ == '__main__':
     print(__file__)
