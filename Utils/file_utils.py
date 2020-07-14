@@ -145,7 +145,23 @@ def relative_path(path, parent_path):
     
     return relative_path
 
+def split_all(path):
+    result = []
 
+    head = path
+    while head and (not is_root(head)):
+        (head, tail) = os.path.split(head)
+        if tail:
+            result.append(tail)
+    
+    result.reverse()
+    return result
+
+def to_filename(txt):
+    if os_utils.is_win():
+        return txt.replace(':', '-')
+
+    return txt
 
 if __name__ == '__main__':
     print(__file__)
