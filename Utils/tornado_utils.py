@@ -118,7 +118,7 @@ def parse_header(header):
     sub_headers = header_split[1:]
     sub_headers_dict = {}
     for sub_header in sub_headers:
-        split = sub_headers.split('=', 1)
+        split = sub_header.split('=', 1)
 
         if len(split) > 1:
             key = split[0].strip()
