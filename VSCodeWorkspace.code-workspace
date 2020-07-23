@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "ScriptServer"
+		},
+		{
+			"path": "../../AppPythonServer"
 		}
 	],
 	"settings": {}
