@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "ScriptServer"
+		},
+		{
+			"path": "LearningAppServices"
+		},
+		{
+			"path": "LearningFlaskDemo"
 		}
 	],
 	"settings": {}
